@@ -1,0 +1,63 @@
+<%@ Import Namespace="SikhResearchInstitute.UI.Helpers"%>
+<%@ Import Namespace="SikhResearchInstitute.UI"%>
+<%@ Import Namespace="SikhResearchInstitute.UI.Controllers"%>
+<%@ Import Namespace="SikhResearchInstitute.Core.Domain.Model"%>
+<%@ Import Namespace="MvcContrib"%>
+<%@ Import Namespace="SikhResearchInstitute.UI.Models"%>
+<%@ Import Namespace="SikhResearchInstitute.UI.Helpers.Extensions"%>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<% //PageInfo pageInfo = ViewData.Get<PageInfo>(); %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	  <title><%//=pageInfo.Title%> - Sikh Research Institute</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	  
+	  <link href="<%=Url.Content("~/css/Stylesheet.css")%>" id="cssStyleSheet" rel="Stylesheet" type="text/css" media="all" />
+	  <asp:ContentPlaceHolder ID="Stylesheets" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+<div id="header">
+<div id="headermenu">
+    <asp:LoginView ID="SriLoginView" runat="server">
+        <LoggedInTemplate>
+            Welcome, <%=ViewData.Get<User>().Name%>	(<a href="<%=Url.Action<LoginController>(c => c.LogOut())%>">Log out</a>)
+        </LoggedInTemplate>
+        <AnonymousTemplate>
+            <%=Html.ActionLink<LoginController>("Log in", c => c.Index())%>
+        </AnonymousTemplate>
+    </asp:LoginView>
+    | <a href="#" title="Subscribe">Subscribe</a> | <a href="#" title="Contact Us">Contact Us</a> | <a href="#" title="Feedback">Feedback</a></div>
+<div id="headersearch">
+  <form id="searchForm" name="searchForm" method="post" action="">
+    <input type="text" name="searchLine" id="searchLine" />
+    <input type="submit" name="searchButton" id="searchButton" value="Search" />
+  </form>
+</div>
+</div>
+<div id="topsection">
+<div id="logo"><a href="#" title="Sikh Research Institute">Sikh Research Institute</a></div>
+<div id="pci"><%=NanakshahiDate.Get()%></div>
+</div>
+<div id="contentzone">
+<div id="menuzone">
+<div id="menuhp"><a href="#" title="Programs" class="menuhp01">Programs</a> <a href="#" title="Events" class="menuhp02">Events</a> <a href="#" title="About Us" class="menuhp03">About Us</a> <a href="#" title="Resources" class="menuhp04">Resources</a> <a href="#" title="Get Involved" class="menuhp05">Get Involved</a></div>
+<div id="menu"><a href="#" title="Programs" class="menu01">Programs</a> <a href="#" title="Events" class="menu02">Events</a> <a href="#" title="About Us" class="menu03">About Us</a> <a href="#" title="Resources" class="menu04">Resources</a> <a href="getinvolved.html" title="Get Involved" class="menu05">Get Involved</a>
+</div>
+</div>
+<div id="content">
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+</div>
+<asp:ContentPlaceHolder ID="SubContent" runat="server"></asp:ContentPlaceHolder>
+</div>
+<div id="footer"> 
+  <p>Sikh Research Institute
+    PO Box 690504
+    San Antonio, TX 78269-0504<br />
+    Phone: 210.757.4555
+    Fax: 469.324.2954
+    Email: info@sikhri.org</p>
+  <p><a href="#"><img src="images/icon-1.gif" alt="" width="23" height="23" border="0" /></a> <a href="#"><img src="images/icon-2.gif" alt="" width="23" height="23" border="0" /></a> <a href="#"><img src="images/icon-3.gif" alt="" width="23" height="23" border="0" /></a></p>
+</div>
+</body>
+</html>
